@@ -1,28 +1,43 @@
 import {Tabs} from 'antd'
 import TagView from './views/TagView'
+import TrackView from './views/TrackView'
+import {scheme} from './palette'
 
 export default function App({data}) {
   return (
     <div>
+      <h1 style={{
+        margin: '0',
+        padding: '0 64px',
+        borderBottom: `1vh solid ${scheme.bgDark}`,
+        lineHeight: '7vh',
+        fontWeight: 'bold',
+        color: scheme.textFillDark
+      }}>
+        Personal Listening Record Annual Report Hip Hop
+      </h1>
       <Tabs
         centered
-        style={{height: '95vh'}}
+        style={{height: '92vh'}}
         size={'large'}
         type={'card'}
+        tabBarStyle={{
+          boxShadow: '0 2px 8px rgb(0 0 0 / 9%)',
+        }}
         tabPosition={'left'}
         tabBarExtraContent={
-        <div style={{color: '#743481', fontWeight: 'bold'}}>mviz ©2022</div>
+        <div style={{color: scheme.textFillDark, fontWeight: 'bold'}}>mviz ©2022</div>
       }
         items={[
+          {
+            key: 'track',
+            label: 'Track',
+            children: <TrackView data={data} />
+          },
           {
             key: 'tag',
             label: 'Tag of Interests',
             children: <TagView data={data} />
-          },
-          {
-            key: 'aat',
-            label: 'Artists-Albums-Track',
-            // children: <TagView data={data} />
           },
           {
             key: 'time',
@@ -30,17 +45,6 @@ export default function App({data}) {
           },
         ]}
       />
-
-      <h1 style={{
-        textAlign: 'right',
-        margin: '0',
-        padding: '0 64px',
-        color: 'white',
-        background: 'left / 15% repeat url("/cardboard.png"), linear-gradient(to right, #743481, #743481)',
-        lineHeight: '5vh'
-      }}>
-        Personal Listening Record Annual Report
-      </h1>
     </div>
   );
 }

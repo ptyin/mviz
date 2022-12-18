@@ -1,13 +1,34 @@
 import {Table} from 'antd'
+import {TinyLine} from '@ant-design/plots'
+import {scheme} from '../palette'
 
-export default function ({tag2Count, tag2Duration, style}) {
+export default function ({tag2Count, tag2Duration, tag2CountByYearMonth, startDate, endDate, style}) {
   const data = []
   for (let tag in tag2Count) {
     data.push({
       key: tag, tag, count: tag2Count[tag], duration: tag2Duration[tag]
     })
   }
-  console.log(tag2Count, tag2Duration)
+  const TagTinyLine = ({tag}) => {
+    const data = []
+    for (let year = startDate.year, month = startDate.month; year < endDate.year || month <= endDate.month; month++) {
+      data.push(tag2CountByYearMonth[tag][`${year}-${month}`])
+      // Reset month to the beginning of the next year
+      if (month === 12) {
+        month = 0
+        year++
+      }
+    }
+    const config = {
+      data,
+      width: 300,
+      height: 20,
+      autoFit: false,
+      color: scheme.primary,
+      smooth: true,
+    };
+    return <TinyLine {...config} />;
+  };
   const columns = [
     {
       title: 'Tag',
@@ -29,14 +50,19 @@ export default function ({tag2Count, tag2Duration, style}) {
       sorter: (a, b) => a.duration - b.duration,
       render: ms => new Date(ms).toISOString().slice(11, 19)
     },
+    {
+      title: 'Timeline',
+      dataIndex: 'tag',
+      key: 'timeline',
+      render: tag => <TagTinyLine tag={tag} />
+    }
   ];
 
-  // TODO Add line plot
   return (
-    <Table size={'middle'}
+    <Table size={'small'}
            style={style}
            showSorterTooltip={false}
-           pagination={{pageSize: 7, showSizeChanger: false}}
+           pagination={{pageSize: 5, showSizeChanger: false}}
            columns={columns} dataSource={data}
     >
 
