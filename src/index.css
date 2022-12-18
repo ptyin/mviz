@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    /*font-family: Comic Sans MS, Comic Sans MS5, cursive;*/
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +11,29 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.ant-tabs-left > .ant-tabs-content-holder > .ant-tabs-content > .ant-tabs-tabpane, .ant-tabs-left > div > .ant-tabs-content-holder > .ant-tabs-content > .ant-tabs-tabpane {
+    padding-left: 0;
+}
+
+.ant-table-thead {
+    height: 48px;
+}
+
+.ant-table-thead .ant-table-cell {
+    color: white;
+    background: left / 50% repeat url("../public/cardboard.png"), #743481;
+}
+
+.ant-table-container table > thead > tr:first-child th:first-child {
+    border-top-left-radius: 0;
+}
+
+.ant-table-thead th.ant-table-column-sort {
+    background: left / 50% repeat url("../public/cardboard.png"), #55265f;
+}
+
+.ant-table-thead .ant-table-column-has-sorters:hover {
+    background: left / 50% repeat url("../public/cardboard.png"), #b651cb !important;
 }

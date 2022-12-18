@@ -26,13 +26,19 @@ export default function ({tag2Count, tag2Duration, style}) {
       title: 'Duration',
       dataIndex: 'duration',
       key: 'duration',
-      sorter: (a, b) => a.duration - b.duration
+      sorter: (a, b) => a.duration - b.duration,
+      render: ms => new Date(ms).toISOString().slice(11, 19)
     },
   ];
 
   // TODO Add line plot
   return (
-    <Table style={style} columns={columns} dataSource={data} pagination={{pageSize: 5, showSizeChanger: false}}>
+    <Table size={'middle'}
+           style={style}
+           showSorterTooltip={false}
+           pagination={{pageSize: 7, showSizeChanger: false}}
+           columns={columns} dataSource={data}
+    >
 
     </Table>
   )

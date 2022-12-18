@@ -30,6 +30,16 @@ export default function ({data, style}) {
     },
   };
 
-  return <WordCloud style={style} {...config} />
+  return (
+    <div style={{width: '100%'}}>
+      <h2 style={{
+        color: 'white', textAlign: 'center', width: '100%', lineHeight: '47px',
+        background: 'left / 10% repeat url("/cardboard.png"), #743481'
+      }}>
+        Tag Cloud
+      </h2>
+      <WordCloud style={style} {...config} />
+    </div>
+  )
 };
 
