@@ -40,7 +40,7 @@ export default function ({tag2CountByYearMonth, tagCountSorted, style}) {
         maxTagCount={12}
         style={{ width: '100%' }}
         placeholder="Tags"
-        defaultValue={[tagCountSorted[0].tag]}
+        defaultValue={selectedTags}
         onChange={(x) => {
           setSelectedTags(x)
         }}

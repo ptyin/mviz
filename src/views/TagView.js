@@ -24,21 +24,21 @@ export default function ({data}) {
     }}
     >
       <div style={{
-        flexBasis: '40%', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap',
-        background: 'white', boxShadow: '0 2px 8px rgb(0 0 0 / 9%)', marginTop: '16px'
+        flexBasis: '40%', display: 'flex', flexDirection: 'column',
+        background: 'white', boxShadow: '0 2px 8px rgb(0 0 0 / 9%)', width: '100%', margin: 'auto'
       }}>
-        <TagCloud style={{flexBasis: '45%'}} data={data.tag2Count} />
-        <h2 style={{
-          textAlign: 'center', writingMode: 'vertical-rl', transform: 'rotate(180deg)',
-          margin: 0, background: scheme.bgDark, color: 'white', lineHeight: '64px', fontWeight: 'bold',
-        }}>
+        <h2 style={{textAlign: 'center', margin: 0, fontWeight: 'bold',}}>
           Tag Cloud
         </h2>
-        <TagPie style={{flexBasis: '45%'}} />
+        <Divider style={{margin: '0 0 16px 0'}} />
+        <div style={{flexBasis: '80%', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap',}}>
+          <TagCloud style={{flexBasis: '45%'}} data={data.tag2Count} />
+          <TagPie style={{flexBasis: '45%'}} />
+        </div>
       </div>
       <div style={{
         flexBasis: '40%', display: 'flex', flexDirection: 'column',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-evenly', width: '100%', margin: 'auto'
       }}>
         <div style={{display: 'flex', alignItems: 'center'}}>
           <h2 style={{color: scheme.textFillDark, margin: '16px', fontWeight: 'bold',}}>Tags of year</h2>

@@ -2,6 +2,7 @@ import {Tabs} from 'antd'
 import TagView from './views/TagView'
 import TrackView from './views/TrackView'
 import {scheme} from './palette'
+import logo from './assets/logo.svg'
 
 export default function App({data}) {
   return (
@@ -14,7 +15,8 @@ export default function App({data}) {
         fontWeight: 'bold',
         color: scheme.textFillDark
       }}>
-        Personal Listening Record Annual Report Hip Hop
+        <img src={logo} alt={'logo'} style={{width: '5vh', marginRight: '32px'}}/>
+        Personal Listening Record Annual Report
       </h1>
       <Tabs
         centered
