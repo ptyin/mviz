@@ -1,20 +1,4 @@
-import StreamingHistory0 from './assets/StreamingHistory0.json'
 import history from './assets/history.json'
-import {getInfo} from './api'
-
-async function fetchInfo() {
-  const infoList = []
-  for (let record of StreamingHistory0) {
-    // noinspection JSUnresolvedVariable
-    const info = {
-      endTime: record.endTime,
-      msPlayed: record.msPlayed,
-      ...await getInfo(record.trackName, record.artistName)
-    }
-    infoList.push(info)
-  }
-  return infoList
-}
 
 export default function statistics() {
   const track2Count = {}, track2Duration = {}, tag2Count = {}, tag2Duration = {}, tag2CountByYearMonth = {}
