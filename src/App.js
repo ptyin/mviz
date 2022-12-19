@@ -3,6 +3,8 @@ import TagView from './views/TagView'
 import TrackView from './views/TrackView'
 import {scheme} from './palette'
 import logo from './assets/logo.svg'
+import TemporalView from "./views/TemporalView";
+import StreamingHistory0 from './assets/StreamingHistory0.json'
 
 export default function App({data}) {
   return (
@@ -44,6 +46,7 @@ export default function App({data}) {
           {
             key: 'time',
             label: 'Time habits',
+            children: <TemporalView data={StreamingHistory0} />
           },
         ]}
       />
