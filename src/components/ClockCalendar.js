@@ -1,7 +1,6 @@
 import {Heatmap} from "@ant-design/plots";
 
 export default function ({data}) {
-  console.log("clock_QAQ");
   let week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
   let newData = [];
   for(let wk=0; wk<7; wk++)
@@ -21,7 +20,6 @@ export default function ({data}) {
     if(clk<0) clk+=24;
     newData[wk*24+clk].value += record.msPlayed;
   }
-  console.log(newData);
   data = newData;
   const config = {
     data,
@@ -62,7 +60,6 @@ export default function ({data}) {
       title: 'time',
       showMarkers: false,
       formatter: (item)=>{
-        console.log(item);
         let val = item.value;
         val /= 1000; val=parseInt(val);
         let s = val%60;

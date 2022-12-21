@@ -2,20 +2,20 @@ import {DualAxes} from "@ant-design/plots";
 
 export default function ({data}) {
   let newData = [];
+  for(let hour=0; hour<24; hour++) {
+    newData.push({
+      'time': hour+":00",
+      'duration': 0,
+      'count': 0,
+    });
+  }
   for(let record of data) {
-    let date = record.endTime.split(' ')[0];
-    let cnt = newData.length;
-    if(cnt===0 || newData[cnt-1].time!==date) {
-      newData.push({
-        'time': date,
-        'duration': record.msPlayed,
-        'count':1
-      });
-    }
-    else {
-      newData[cnt-1].duration += record.msPlayed;
-      newData[cnt-1].count++;
-    }
+    let time = record.endTime.split(' ')[1];
+    let hour = parseInt(time.split(':')[0]);
+    hour -= 8;
+    if(hour<0) hour+=24;
+    newData[hour].duration += record.msPlayed;
+    newData[hour].count += 1;
   }
   data = newData;
   const config = {
@@ -24,7 +24,7 @@ export default function ({data}) {
     yField: ['duration','count'],
     limitInPlot: true,
     padding: 'auto',
-    // slider: {},
+    slider: {},
     tooltip:{
       formatter: (item) => {
         if(item.duration) {

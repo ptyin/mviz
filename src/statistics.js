@@ -3,8 +3,10 @@ import history from './assets/history.json'
 export default function statistics() {
   const track2Count = {}, track2Duration = {}, tag2Count = {}, tag2Duration = {}, tag2CountByYearMonth = {}
   const tag2CountByTrack = {}
+  let totDuration = 0;
   let minDate = new Date(history[0]?.endTime), maxDate = new Date(history[0]?.endTime)
   for (let record of history) {
+    totDuration += record.msPlayed
     const trackName = record.track.name
     const artistName = record.track.artist.name
     const trackArtistStr = `${trackName} - ${artistName}`
@@ -37,5 +39,6 @@ export default function statistics() {
     track2Count, track2Duration, tag2Count, tag2Duration, tag2CountByYearMonth, tag2CountByTrack,
     startDate: {year: minDate.getFullYear(), month: minDate.getMonth() + 1, day: minDate.getDate()},
     endDate: {year: maxDate.getFullYear(), month: maxDate.getMonth() + 1, day: minDate.getDate()},
+    totDuration,
   }
 }
