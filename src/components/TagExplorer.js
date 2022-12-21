@@ -1,6 +1,7 @@
 import {Table} from 'antd'
 import {TinyLine} from '@ant-design/plots'
 import {scheme} from '../palette'
+import {ms2Str} from '../utils'
 
 export default function ({tag2Count, tag2Duration, tag2CountByYearMonth, startDate, endDate, style}) {
   const data = []
@@ -48,7 +49,7 @@ export default function ({tag2Count, tag2Duration, tag2CountByYearMonth, startDa
       dataIndex: 'duration',
       key: 'duration',
       sorter: (a, b) => a.duration - b.duration,
-      render: ms => new Date(ms).toISOString().slice(11, 19)
+      render: ms => ms2Str(ms)
     },
     {
       title: 'Timeline',
