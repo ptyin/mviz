@@ -4,15 +4,20 @@ import {scheme} from '../palette'
 import {Divider, Tag, Tooltip} from 'antd'
 import {ms2Str} from '../utils'
 import CountTinyLine from '../components/CountTinyLine'
+import TripleExplorer from '../components/TripleExplorer'
 
-export default function ({data: {
-  track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration,
-  track2PlayCount, track2Listeners, artist2PlayCount, artist2Listeners, album2PlayCount, album2Listeners,
-  durationByYearMonth,
-  totalDuration,
-  album2Image,
-  startDate, endDate
-}}) {
+export default function ({
+                           data: {
+                             track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration,
+                             track2PlayCount, track2Listeners, artist2PlayCount, artist2Listeners, album2PlayCount,
+                             album2Listeners,
+                             durationByYearMonth,
+                             totalDuration,
+                             track2CountByYearMonth, artist2CountByYearMonth, artist2DistinctTracks,
+                             album2CountByYearMonth, album2DistinctTracks,
+                             album2Image,
+                             startDate, endDate
+                           }}) {
   let trackData = [], artistData = [], albumData = []
   for (let track in track2Count) {
     trackData.push({
@@ -51,20 +56,20 @@ export default function ({data: {
     ))
   const allTopList = [trackData, artistData, albumData].map((data, i) => (
     <div key={i}>
-      <p style={{color: scheme.textFillDark, margin: '8px 0', fontWeight: 'bold',}}>Top {data[0].type}</p>
-      <Divider style={{margin: '8px', borderTop: `1px solid ${scheme.primary}`}}/>
+      <p style={{color: scheme.textFillDark, margin: '0', fontWeight: 'bold',}}>Top {data[0].type}</p>
+      <Divider style={{margin: '4px', borderTop: `1px solid ${scheme.primary}`}}/>
       <div style={{display: 'flex'}}>
         {topList(data)}
       </div>
     </div>
   ))
   return (
-    <div style={{height: '92vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
-      <div style={{flexBasis: '20%', display: 'flex', justifyContent: 'space-between'}}>
-        <div style={{flexBasis: '35%', display: 'flex', flexDirection: 'column'}}>
+    <div style={{height: '92vh', display: 'flex', flexDirection: 'column'}}>
+      <div style={{flexBasis: '20%', display: 'flex', justifyContent: 'space-between', width: '100%', margin: 'auto'}}>
+        <div style={{flexBasis: '40%', display: 'flex', flexDirection: 'column'}}>
           {allTopList}
         </div>
-        <div style={{flexBasis: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
+        <div style={{flexBasis: '55%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
           <div style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
             {
               [
@@ -82,15 +87,32 @@ export default function ({data: {
           <CountTinyLine durationByYearMonth={durationByYearMonth} startDate={startDate} endDate={endDate} />
         </div>
       </div>
-      <div style={{flexBasis: '40%', display: 'flex', justifyContent: 'space-between'}}>
-        <div style={{flexBasis: '30%'}}>
-        </div>
-        <div style={{flexBasis: '60%', display: 'flex'}}>
+      <div style={{flexBasis: '30%', display: 'flex', justifyContent: 'space-between', width: '100%', margin: 'auto'}}>
+        <div style={{flexBasis: '40%', display: 'flex'}}>
           <TrackBubble style={{flexBasis: '100%'}} data={trackData} color={d3.schemeSet3[0]}/>
           <TrackBubble style={{flexBasis: '100%'}} data={artistData} color={d3.schemeSet3[2]}/>
           <TrackBubble style={{flexBasis: '100%'}} data={albumData} color={d3.schemeSet3[3]}/>
         </div>
+        <div style={{flexBasis: '60%'}}>
+        </div>
       </div>
+      <div style={{flexBasis: '30%', display: 'flex', justifyContent: 'space-between', width: '100%', margin: 'auto'}}>
+        <div style={{flexBasis: '40%'}}>
+          <TripleExplorer
+            data={{
+              track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration,
+              track2PlayCount, track2Listeners, artist2PlayCount, artist2Listeners, album2PlayCount,
+              album2Listeners,
+              track2CountByYearMonth, artist2CountByYearMonth, artist2DistinctTracks,
+              album2CountByYearMonth, album2DistinctTracks,
+              startDate, endDate
+            }}/>
+        </div>
+        <div style={{flexBasis: '40%'}}>
+
+        </div>
+      </div>
+
     </div>
   )
 }

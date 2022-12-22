@@ -50,3 +50,11 @@ code {
 .ant-tabs-tab:not(.ant-tabs-tab-active):hover .ant-tabs-tab-btn {
     color: #CE7777
 }
+
+.ant-table.ant-table-small .ant-table-thead > tr > th, .ant-table.ant-table-small .ant-table-tbody > tr > td {
+    padding: 4px
+}
+
+.ant-table.ant-table-small .ant-table-thead {
+    height: 16px
+}

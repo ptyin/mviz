@@ -52,7 +52,7 @@ export default function ({tag2Count, tag2Duration, tag2CountByYearMonth, startDa
       render: ms => ms2Str(ms)
     },
     {
-      title: 'Timeline',
+      title: 'Listens by month',
       dataIndex: 'tag',
       key: 'timeline',
       render: tag => <TagTinyLine tag={tag} />

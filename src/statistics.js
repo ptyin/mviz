@@ -7,8 +7,8 @@ export default function statistics() {
     artist2Listeners = {}
   const tag2Count = {}, tag2Duration = {}, tag2CountByYearMonth = {}, tag2CountByTrack = {}
   const durationByYearMonth = {}
-  const track2CountByYearMonth = {}, artist2CountByYearMonth = {}, album2CountByYearMonth = {}
-  const artist2DistinctTrack = {}
+  const track2CountByYearMonth = {}, artist2CountByYearMonth = {}, artist2DistinctTracks = {},
+    album2CountByYearMonth = {}, album2DistinctTracks = {}
   const artist2Image = {}, album2Image = {}
   let totalDuration = 0, totDuration = 0
   let minDate = new Date(history[0]?.endTime), maxDate = new Date(history[0]?.endTime)
@@ -46,6 +46,32 @@ export default function statistics() {
 
     durationByYearMonth[dateStr] = durationByYearMonth[dateStr] + record.msPlayed || record.msPlayed
 
+    if (!track2CountByYearMonth[trackName])
+      track2CountByYearMonth[trackName] = {}
+    if (!track2CountByYearMonth[trackName][dateStr])
+      track2CountByYearMonth[trackName][dateStr] = 0
+    track2CountByYearMonth[trackName][dateStr]++
+
+    if (!artist2CountByYearMonth[artistName])
+      artist2CountByYearMonth[artistName] = {}
+    if (!artist2CountByYearMonth[artistName][dateStr])
+      artist2CountByYearMonth[artistName][dateStr] = 0
+    artist2CountByYearMonth[artistName][dateStr]++
+    if (!artist2DistinctTracks[artistName])
+      artist2DistinctTracks[artistName] = new Set()
+    artist2DistinctTracks[artistName].add(trackName)
+
+    if (albumName) {
+      if (!album2CountByYearMonth[albumName])
+        album2CountByYearMonth[albumName] = {}
+      if (!album2CountByYearMonth[albumName][dateStr])
+        album2CountByYearMonth[albumName][dateStr] = 0
+      album2CountByYearMonth[albumName][dateStr]++
+      if (!album2DistinctTracks[albumName])
+        album2DistinctTracks[albumName] = new Set()
+      album2DistinctTracks[albumName].add(trackName)
+    }
+
     // noinspection JSUnresolvedVariable
     for (let tag of record.track?.toptags?.tag) {
       // Replace non-alphabet character.
@@ -71,6 +97,7 @@ export default function statistics() {
     tag2Count, tag2Duration, tag2CountByYearMonth, tag2CountByTrack,
     artist2Image, album2Image,
     durationByYearMonth,
+    track2CountByYearMonth, artist2CountByYearMonth, artist2DistinctTracks, album2CountByYearMonth, album2DistinctTracks,
     totalDuration, totDuration,
     startDate: {year: minDate.getFullYear(), month: minDate.getMonth() + 1, day: minDate.getDate()},
     endDate: {year: maxDate.getFullYear(), month: maxDate.getMonth() + 1, day: minDate.getDate()},

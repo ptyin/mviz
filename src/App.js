@@ -40,7 +40,7 @@ export default function App({data}) {
           },
           {
             key: 'tag',
-            label: 'Tag of Interests',
+            label: 'Tag of interests',
             children: <TagView data={data} />
           },
           {

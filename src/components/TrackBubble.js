@@ -4,7 +4,7 @@ export default function ({data, color, style}) {
   const yMedian = data.sort((a, b) => a.count -b.count)[Math.floor(data.length / 2)]
   // const xAvg = data.map(x => x.playCount).reduce((a, b) => a + b) / data.length
   // const yAvg = data.map(x => x.count).reduce((a, b) => a + b) / data.length
-  data = data.sort((a, b) => a.playCount -b.playCount)
+  data = data.sort((a, b) => a.playCount -b.playCount).slice(Math.max(0, data.length - 100), data.length)
   for (let i = 0; i < data.length; i++)
     data[i].popularity = i
   const config = {
