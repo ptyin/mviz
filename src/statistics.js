@@ -72,10 +72,14 @@ export default function statistics() {
       album2DistinctTracks[albumName].add(trackName)
     }
 
+    const tagNameSet = new Set()
     // noinspection JSUnresolvedVariable
-    for (let tag of record.track?.toptags?.tag) {
+    for (let tag of record.track.toptags?.tag) {
       // Replace non-alphabet character.
       const name = tag.name.replace(/[^a-zA-Z0-9]+/, ' ').toUpperCase().trim()
+      tagNameSet.add(name)
+    }
+    for (let name of tagNameSet) {
       tag2Count[name] = tag2Count[name] + 1 || 1
       tag2Duration[name] = tag2Duration[name] + record.msPlayed || record.msPlayed
       if (!tag2CountByYearMonth[name])
