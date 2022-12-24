@@ -5,6 +5,8 @@ import {Divider, Tag, Tooltip} from 'antd'
 import {ms2Str} from '../utils'
 import CountTinyLine from '../components/CountTinyLine'
 import TripleExplorer from '../components/TripleExplorer'
+import TopBar from '../components/TopBar'
+import CountAnalysis from '../components/CountAnalysis'
 
 export default function ({
                            data: {
@@ -64,12 +66,33 @@ export default function ({
     </div>
   ))
   return (
-    <div style={{height: '92vh', display: 'flex', flexDirection: 'column'}}>
-      <div style={{flexBasis: '20%', display: 'flex', justifyContent: 'space-between', width: '100%', margin: 'auto'}}>
-        <div style={{flexBasis: '40%', display: 'flex', flexDirection: 'column'}}>
+    <div style={{height: '92vh', display: 'flex', justifyContent: 'space-evenly'}}>
+      <div style={{flexBasis: '48%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
+        <div style={{flexBasis: '30%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
           {allTopList}
         </div>
-        <div style={{flexBasis: '55%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
+        <div style={{flexBasis: '60%', background: 'white', boxShadow: '0 2px 8px rgb(0 0 0 / 9%)', padding: '16px'}}>
+          <TripleExplorer
+            style={{flexBasis: '45%'}}
+            data={{
+              track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration,
+              track2PlayCount, track2Listeners, artist2PlayCount, artist2Listeners, album2PlayCount,
+              album2Listeners,
+              track2CountByYearMonth, artist2CountByYearMonth, artist2DistinctTracks,
+              album2CountByYearMonth, album2DistinctTracks,
+              startDate, endDate
+            }}/>
+          <TopBar style={{flexBasis: '45%', display: 'flex', flexDirection: 'column'}}
+                  track2CountByYearMonth={track2CountByYearMonth}
+                  artist2CountByYearMonth={artist2CountByYearMonth}
+                  album2CountByYearMonth={album2CountByYearMonth}
+                  startDate={startDate}
+                  endDate={endDate}
+          />
+        </div>
+      </div>
+      <div style={{flexBasis: '48%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
+        <div style={{flexBasis: '25%'}}>
           <div style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
             {
               [
@@ -86,33 +109,37 @@ export default function ({
           </div>
           <CountTinyLine durationByYearMonth={durationByYearMonth} startDate={startDate} endDate={endDate} />
         </div>
+        <div style={{
+          flexBasis: '35%', display: 'flex', flexDirection: 'column', background: 'white',
+          boxShadow: '0 2px 8px rgb(0 0 0 / 9%)', padding: '16px'
+        }}>
+          <p>
+            <span style={{fontWeight: 'bold'}}>Popularity chart: </span>
+            The x axis is the total listens of track, artist and album, and the y axis is the times you listened to it.
+            Besides, the size of bubble represents the accumulated duration you listened to it.
+          </p>
+          <div style={{display: 'flex', height: '100%'}}>
+            <TrackBubble style={{flexBasis: '100%'}} data={trackData} color={d3.schemeSet3[0]}/>
+            <TrackBubble style={{flexBasis: '100%'}} data={artistData} color={d3.schemeSet3[2]}/>
+            <TrackBubble style={{flexBasis: '100%'}} data={albumData} color={d3.schemeSet3[3]}/>
+          </div>
+        </div>
+        <div style={{
+          flexBasis: '35%', display: 'flex', flexDirection: 'column', background: 'white',
+          boxShadow: '0 2px 8px rgb(0 0 0 / 9%)', padding: '16px'
+        }}>
+          <p>
+            <span style={{fontWeight: 'bold'}}>Listens chart: </span>
+            The color denotes the count you listened to the track, artist and album,
+            and the angle represents the number of track / artist / album you listened to at the corresponding count.
+          </p>
+          <div style={{display: 'flex', height: '100%'}}>
+            <CountAnalysis style={{flexBasis: '100%'}} type={'Track'} count={track2Count} color={d3.schemeSet3[0]}/>
+            <CountAnalysis style={{flexBasis: '100%'}} type={'Artist'} count={artist2Count} color={d3.schemeSet3[2]}/>
+            <CountAnalysis style={{flexBasis: '100%'}} type={'Album'} count={album2Count} color={d3.schemeSet3[3]}/>
+          </div>
+        </div>
       </div>
-      <div style={{flexBasis: '30%', display: 'flex', justifyContent: 'space-between', width: '100%', margin: 'auto'}}>
-        <div style={{flexBasis: '40%', display: 'flex'}}>
-          <TrackBubble style={{flexBasis: '100%'}} data={trackData} color={d3.schemeSet3[0]}/>
-          <TrackBubble style={{flexBasis: '100%'}} data={artistData} color={d3.schemeSet3[2]}/>
-          <TrackBubble style={{flexBasis: '100%'}} data={albumData} color={d3.schemeSet3[3]}/>
-        </div>
-        <div style={{flexBasis: '60%'}}>
-        </div>
-      </div>
-      <div style={{flexBasis: '30%', display: 'flex', justifyContent: 'space-between', width: '100%', margin: 'auto'}}>
-        <div style={{flexBasis: '40%'}}>
-          <TripleExplorer
-            data={{
-              track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration,
-              track2PlayCount, track2Listeners, artist2PlayCount, artist2Listeners, album2PlayCount,
-              album2Listeners,
-              track2CountByYearMonth, artist2CountByYearMonth, artist2DistinctTracks,
-              album2CountByYearMonth, album2DistinctTracks,
-              startDate, endDate
-            }}/>
-        </div>
-        <div style={{flexBasis: '40%'}}>
-
-        </div>
-      </div>
-
     </div>
   )
 }

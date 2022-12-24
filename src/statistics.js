@@ -1,8 +1,9 @@
-import history from './assets/history.json'
+import history0 from './assets/history.json'
 
-export default function statistics() {
+export default function statistics(history) {
+  history = history || history0
   const track2Count = {}, track2Duration = {}, artist2Count = {}, artist2Duration = {}, album2Count = {},
-    album2Duration = {}
+    album2Duration = {}, track2TotalDuration = {}
   const track2PlayCount = {}, track2Listeners = {}, album2PlayCount = {}, album2Listeners = {}, artist2PlayCount = {},
     artist2Listeners = {}
   const tag2Count = {}, tag2Duration = {}, tag2CountByYearMonth = {}, tag2CountByTrack = {}
@@ -12,10 +13,9 @@ export default function statistics() {
   const track2CountByYearMonth = {}, artist2CountByYearMonth = {}, artist2DistinctTracks = {},
     album2CountByYearMonth = {}, album2DistinctTracks = {}
   const artist2Image = {}, album2Image = {}
-  let totalDuration = 0, totDuration = 0
+  let totalDuration = 0
   let minDate = new Date(history[0]?.endTime), maxDate = new Date(history[0]?.endTime)
   for (let record of history) {
-    totDuration += record.msPlayed
     const trackName = record.track.name, artistName = record.track.artist.name, albumName = record.track.album?.name
     const trackArtistStr = `${trackName} - ${artistName}`
     const date = new Date(record.endTime)
@@ -30,6 +30,7 @@ export default function statistics() {
       album2Count[albumName] = album2Count[albumName] + 1 || 1
       album2Duration[albumName] = album2Duration[albumName] + record.msPlayed || record.msPlayed
     }
+    track2TotalDuration[trackName] = record.track.duration
 
     track2PlayCount[trackName] = record.track.playcount * 1
     track2Listeners[trackName] = record.track.listeners * 1
@@ -169,14 +170,14 @@ export default function statistics() {
   // console.log("history", history)
 
   return {
-    track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration,
+    track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration, track2TotalDuration,
     track2PlayCount, track2Listeners, artist2PlayCount, artist2Listeners, album2PlayCount, album2Listeners,
     tag2Count, tag2Duration, tag2CountByYearMonth, tag2CountByTrack,
     tag2TrackSet, tag2TrackNameAndCount, tag2ArtistNameAndCount,
     artist2Image, album2Image,
     durationByYearMonth,
     track2CountByYearMonth, artist2CountByYearMonth, artist2DistinctTracks, album2CountByYearMonth, album2DistinctTracks,
-    totalDuration, totDuration,
+    totalDuration,
     startDate: {year: minDate.getFullYear(), month: minDate.getMonth() + 1, day: minDate.getDate()},
     endDate: {year: maxDate.getFullYear(), month: maxDate.getMonth() + 1, day: minDate.getDate()},
   }

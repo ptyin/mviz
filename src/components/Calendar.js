@@ -1,7 +1,6 @@
 import {Heatmap} from "@ant-design/plots";
 
-export default function ({data}) {
-  console.log("calendar_QAQ");
+export default function ({data,style}) {
   const date2Count = {}
 
   let firstDay = data[0].endTime.split(' ')[0];
@@ -44,13 +43,13 @@ export default function ({data}) {
     xField: 'week',
     yField: 'day',
     colorField: 'duration',
-    color: ['#FFFFFF','#F08080'],
+    color: ['#FFFFFF','#F08080'], //FAFAFA
     shape: 'boundary-polygon',
     reflect: 'y',
     meta: {
       day: {
         type: 'cat',
-        values: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+        values: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
       },
       week: {
         type: 'cat',
@@ -104,6 +103,25 @@ export default function ({data}) {
     yAxis: {
       grid: null,
     },
+    xAxis: {
+      label:{
+        formatter: (val)=>{
+          if(val == 2) return 'Feb';
+          else if(val == 5) return 'Mar';
+          else if(val == 9) return 'Apr';
+          else if(val == 14) return 'May';
+          else if(val == 18) return 'Jun';
+          else if(val == 24) return 'Jul';
+          else if(val == 26) return 'Aug';
+          else if(val == 30) return 'Sep';
+          else if(val == 36) return 'Oct';
+          else if(val == 39) return 'Nov';
+          else if(val == 45) return 'Dec';
+          else if(val == 48) return 'Jan';
+          return '';
+        }
+      }
+    }
   }
-  return <Heatmap {...config} />
+  return <Heatmap style={style} {...config} />
 }

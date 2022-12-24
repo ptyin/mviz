@@ -1,23 +1,7 @@
 import {DualAxes} from "@ant-design/plots";
 
-export default function ({data}) {
-  let newData = [];
-  for(let record of data) {
-    let date = record.endTime.split(' ')[0];
-    let cnt = newData.length;
-    if(cnt===0 || newData[cnt-1].time!==date) {
-      newData.push({
-        'time': date,
-        'duration': record.msPlayed,
-        'count':1
-      });
-    }
-    else {
-      newData[cnt-1].duration += record.msPlayed;
-      newData[cnt-1].count++;
-    }
-  }
-  data = newData;
+export default function ({data,style}) {
+
   const config = {
     data: [data,data],
     xField: 'time',
@@ -57,6 +41,16 @@ export default function ({data}) {
         }
       }
     },
+    legend: {
+      itemName:{
+        formatter:(text,item)=>{
+          if(text === 'duration')
+            return '听歌时长';
+          else
+            return '切歌次数';
+        },
+      },
+    },
     geometryOptions: [
       {
         geometry: 'column',
@@ -75,6 +69,7 @@ export default function ({data}) {
         },
       },
     },
+    height:200,
   }
-  return <DualAxes {...config} />
+  return <DualAxes style={style} {...config} />
 }

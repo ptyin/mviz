@@ -20,7 +20,7 @@ export default function ({data, color, style}) {
     yAxis: {
       nice: false,
       title: {
-        text: 'Count',
+        text: 'Listens',
         position: 'end',
         offset: 10
       },
@@ -36,6 +36,7 @@ export default function ({data, color, style}) {
           stroke: '#aaa',
         },
       },
+      label: false
     },
     tooltip: {
       fields: ['name', 'count', 'durationStr', 'playCount', 'listeners'],
@@ -68,50 +69,6 @@ export default function ({data, color, style}) {
         },
       },
     },
-    // quadrant: {
-    //   xBaseline: data.length / 2,
-    //   yBaseline: yMedian,
-    // },
-    // annotations: [
-    //   {
-    //     type: 'line',
-    //     start: [-0.04, 100000],
-    //     end: [1.04, 30000],
-    //     style: {
-    //       stroke: '#aaa',
-    //     },
-    //   },
-    //   {
-    //     type: 'text',
-    //     position: ['1.03', 'max'],
-    //     content: 'Average annual wage',
-    //     style: {
-    //       textAlign: 'right',
-    //       fontWeight: '500',
-    //       fill: 'rgb(92, 92, 92)',
-    //     },
-    //   },
-    //   {
-    //     type: 'text',
-    //     position: ['1.03', 'min'],
-    //     content: 'Most likely to \nbe automated ',
-    //     style: {
-    //       textAlign: 'right',
-    //       fontWeight: '500',
-    //       fill: 'rgb(92, 92, 92)',
-    //     },
-    //   },
-    //   {
-    //     type: 'text',
-    //     position: ['-0.03', 'min'],
-    //     content: 'Least likely to \nbe automated ',
-    //     style: {
-    //       textAlign: 'left',
-    //       fontWeight: '500',
-    //       fill: 'rgb(92, 92, 92)',
-    //     },
-    //   },
-    // ],
   };
 
   return <Scatter style={style} {...config} />;
