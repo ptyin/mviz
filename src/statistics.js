@@ -11,10 +11,9 @@ export default function statistics(history) {
   const track2CountByYearMonth = {}, artist2CountByYearMonth = {}, artist2DistinctTracks = {},
     album2CountByYearMonth = {}, album2DistinctTracks = {}
   const artist2Image = {}, album2Image = {}
-  let totalDuration = 0, totDuration = 0
+  let totalDuration = 0
   let minDate = new Date(history[0]?.endTime), maxDate = new Date(history[0]?.endTime)
   for (let record of history) {
-    totDuration += record.msPlayed
     const trackName = record.track.name, artistName = record.track.artist.name, albumName = record.track.album?.name
     const trackArtistStr = `${trackName} - ${artistName}`
     const date = new Date(record.endTime)
@@ -104,7 +103,7 @@ export default function statistics(history) {
     artist2Image, album2Image,
     durationByYearMonth,
     track2CountByYearMonth, artist2CountByYearMonth, artist2DistinctTracks, album2CountByYearMonth, album2DistinctTracks,
-    totalDuration, totDuration,
+    totalDuration,
     startDate: {year: minDate.getFullYear(), month: minDate.getMonth() + 1, day: minDate.getDate()},
     endDate: {year: maxDate.getFullYear(), month: maxDate.getMonth() + 1, day: minDate.getDate()},
   }
