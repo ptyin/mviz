@@ -1,11 +1,12 @@
 import TagCloud from '../components/TagCloud'
 import TagExplorer from '../components/TagExplorer'
-import {Divider, Tag} from 'antd'
+import {AutoComplete, Divider, Tag} from 'antd'
 import * as d3 from 'd3-scale-chromatic'
 import TagLine from '../components/TagLine'
 import TagTimeline from '../components/TagTimeline'
 import {scheme} from '../palette'
 import TagPieSelector from '../components/TagPieSelector'
+import TagTimelineSelector from '../components/TagTimelineSelector'
 
 export default function ({data}) {
   const tagCountSorted = Object.keys(data.tag2Count).map(tag => ({tag, count: data.tag2Count[tag]}))
@@ -57,7 +58,10 @@ export default function ({data}) {
             }}>
               Tag Timeline
             </h2>
-            <TagTimeline style={{flexBasis: '10%', marginTop: '16px'}} />
+            <TagTimelineSelector style={{ flexBasis: '10%', marginTop: '20px', height: '250px' }}
+                                 tag2CountByYearMonth={data.tag2CountByYearMonth}
+                                 tagCountSorted={tagCountSorted}
+             />
             <TagLine style={{flexBasis: '40%', marginTop: '16px'}}
                      tag2CountByYearMonth={data.tag2CountByYearMonth}
                      tagCountSorted={tagCountSorted}/>

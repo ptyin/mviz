@@ -2,6 +2,7 @@ import {Line} from '@ant-design/charts'
 import {useState, useEffect} from 'react'
 import {Select} from 'antd'
 import * as d3 from 'd3-scale-chromatic'
+import { selectTagsCallback } from './TagTimelineSelector'
 
 export default function ({tag2CountByYearMonth, tagCountSorted, style}) {
   const [selectedTags, setSelectedTags] = useState(tagCountSorted.slice(0, 5).map(({tag}) => tag))
@@ -13,6 +14,7 @@ export default function ({tag2CountByYearMonth, tagCountSorted, style}) {
       temp = temp.concat(
         Object.keys(tag2CountByYearMonth[tag]).map(date => ({tag, date, count: tag2CountByYearMonth[tag][date]}))
       )
+    selectTagsCallback(selectedTags)
     setLineData(temp)
   }, [selectedTags])
   const config = {
