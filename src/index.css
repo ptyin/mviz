@@ -58,3 +58,22 @@ code {
 .ant-table.ant-table-small .ant-table-thead {
     height: 16px
 }
+
+.temp1{
+    position: relative;
+    font-size: 1em;
+    text-align: end;
+    height: 2em;
+}
+
+.temp1::before{
+    content:"「";
+    font-size: 1em;
+}
+
+.temp1::after{
+    position: relative;
+    top:.2em;
+    content:"」";
+    font-size: 1em;
+}
