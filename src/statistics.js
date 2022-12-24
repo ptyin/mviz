@@ -1,6 +1,7 @@
-import history from './assets/history.json'
+import history0 from './assets/history.json'
 
-export default function statistics() {
+export default function statistics(history) {
+  history = history || history0
   const track2Count = {}, track2Duration = {}, artist2Count = {}, artist2Duration = {}, album2Count = {},
     album2Duration = {}, track2TotalDuration = {}
   const track2PlayCount = {}, track2Listeners = {}, album2PlayCount = {}, album2Listeners = {}, artist2PlayCount = {},
