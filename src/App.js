@@ -35,7 +35,7 @@ export default function App({data}) {
         items={[
           {
             key: 'track',
-            label: 'Track',
+            label: 'General stats',
             children: <TrackView data={data} />
           },
           {

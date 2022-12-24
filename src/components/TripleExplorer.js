@@ -10,7 +10,8 @@ export default function ({
                              track2CountByYearMonth, artist2CountByYearMonth, artist2DistinctTracks,
                              album2CountByYearMonth, album2DistinctTracks,
                              startDate, endDate
-                           }
+                           },
+                           style
                          }) {
   const [choice, setChoice] = useState('track')
   const [tableData, setTableData] = useState([])

@@ -2,7 +2,7 @@ import history from './assets/history.json'
 
 export default function statistics() {
   const track2Count = {}, track2Duration = {}, artist2Count = {}, artist2Duration = {}, album2Count = {},
-    album2Duration = {}
+    album2Duration = {}, track2TotalDuration = {}
   const track2PlayCount = {}, track2Listeners = {}, album2PlayCount = {}, album2Listeners = {}, artist2PlayCount = {},
     artist2Listeners = {}
   const tag2Count = {}, tag2Duration = {}, tag2CountByYearMonth = {}, tag2CountByTrack = {}
@@ -28,6 +28,7 @@ export default function statistics() {
       album2Count[albumName] = album2Count[albumName] + 1 || 1
       album2Duration[albumName] = album2Duration[albumName] + record.msPlayed || record.msPlayed
     }
+    track2TotalDuration[trackName] = record.track.duration
 
     track2PlayCount[trackName] = record.track.playcount * 1
     track2Listeners[trackName] = record.track.listeners * 1
@@ -96,7 +97,7 @@ export default function statistics() {
   }
 
   return {
-    track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration,
+    track2Count, track2Duration, artist2Count, artist2Duration, album2Count, album2Duration, track2TotalDuration,
     track2PlayCount, track2Listeners, artist2PlayCount, artist2Listeners, album2PlayCount, album2Listeners,
     tag2Count, tag2Duration, tag2CountByYearMonth, tag2CountByTrack,
     artist2Image, album2Image,

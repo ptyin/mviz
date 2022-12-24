@@ -4,7 +4,6 @@ import {scheme} from '../palette'
 import {ms2Str} from '../utils'
 
 export default function ({data, maxTracks, style}) {
-  console.log('maxTracks', maxTracks)
   const ArtistTinyLine = ({data}) => {
     const config = {
       data,
@@ -44,7 +43,7 @@ export default function ({data, maxTracks, style}) {
       )
     },
     {
-      title: 'Count',
+      title: 'Listens',
       dataIndex: 'count',
       key: 'count',
       sorter: (a, b) => a.count - b.count,
