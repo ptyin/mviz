@@ -22,7 +22,7 @@ export default function ({dateToMostTagInfo, style}) {
     }
   }
 
-  console.log("timelineItem", timelineItems)
+  // console.log("timelineItem", timelineItems)
 
   timelineItems.reverse()
 

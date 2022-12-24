@@ -58,18 +58,18 @@ export var selectTagsCallback = undefined
 
 export default function ({tag2CountByYearMonth, tagCountSorted, style}) {
 
-  console.log("tag2CountByYearMonth['HIP HOP'] in TagTimelineSelector: ", tag2CountByYearMonth["HIP HOP"])
+  // console.log("tag2CountByYearMonth['HIP HOP'] in TagTimelineSelector: ", tag2CountByYearMonth["HIP HOP"])
 
   const [dateToMostTagInfo, setDateToMostTagInfo] = useState({dateList: [], dateToMostTag: []})
 
   selectTagsCallback = (selectTags) => {
-    console.log("tagtimelineSelector callback arg: ", selectTags)
+    // console.log("tagtimelineSelector callback arg: ", selectTags)
     setDateToMostTagInfo(selectTags2SelectTags2dateToMostTagInfo(selectTags, tag2CountByYearMonth))
   }
 
   // Get all appeared date in dateset
 
-  console.log("dateToMostTagInfo", dateToMostTagInfo)
+  // console.log("dateToMostTagInfo", dateToMostTagInfo)
 
   return (<TagTimeline 
     style={style}

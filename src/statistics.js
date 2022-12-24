@@ -165,7 +165,7 @@ export default function statistics(history) {
     tag2ArtistNameAndCount[tagName] = remove_values_by_ratio(tag2ArtistNameAndCount[tagName], 0.6, 0.1)
   }
 
-  console.log("statistics", tag2TrackSet['HIP HOP'])
+  // console.log("statistics", tag2TrackSet['HIP HOP'])
   // console.log("statistics", tag2TrackNameAndCount['HIP HOP'])
   // console.log("history", history)
 
