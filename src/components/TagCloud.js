@@ -1,6 +1,7 @@
 import { WordCloud } from '@ant-design/plots'
 // import * as d3 from 'd3-scale-chromatic'
 import {scheme} from '../palette'
+import {clickedTag} from './TagPieSelector'
 
 export default function ({data, style}) {
   data = Object.keys(data).map(tag => ({tag, count: data[tag]}))
@@ -34,6 +35,7 @@ export default function ({data, style}) {
       plot.on('element:click', e => {
         const datum = e?.data?.data?.datum
         console.log('e', datum)
+        clickedTag(datum.tag)
       })
     }
   }
