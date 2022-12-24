@@ -37,7 +37,7 @@ export default function ({tag2Count, tag2Duration, tag2CountByYearMonth, startDa
       key: 'tag',
     },
     {
-      title: 'Count',
+      title: 'Listens',
       dataIndex: 'count',
       key: 'count',
       sorter: (a, b) => a.count - b.count,
