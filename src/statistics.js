@@ -73,14 +73,14 @@ export default function statistics() {
         album2DistinctTracks[albumName] = new Set()
       album2DistinctTracks[albumName].add(trackName)
     }
-
-    let tagListOfCurRecord = []
-
+    const tagNameSet = new Set()
     // noinspection JSUnresolvedVariable
-    for (let tag of record.track?.toptags?.tag) {
+    for (let tag of record.track.toptags?.tag) {
       // Replace non-alphabet character.
       const name = tag.name.replace(/[^a-zA-Z0-9]+/, ' ').toUpperCase().trim()
-      tagListOfCurRecord.push(name)
+      tagNameSet.add(name)
+    }
+    for (let name of tagNameSet) {
       tag2Count[name] = tag2Count[name] + 1 || 1
       // if (name == 'HIP HOP') {
       //   console.log(trackName)

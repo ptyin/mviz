@@ -6,7 +6,7 @@ import {clickedTag} from './TagPieSelector'
 export default function ({data, style}) {
   data = Object.keys(data).map(tag => ({tag, count: data[tag]}))
     .sort((a, b) => b['count'] - a['count'])
-    .slice(0, 200)
+    .slice(0, 100)
   // const maxCount = data[0].count, minCount = data[data.length - 1].count
   const config = {
     data,
@@ -17,7 +17,8 @@ export default function ({data, style}) {
     autoFit: true,
     wordStyle: {
       fontFamily: 'Verdana',
-      fontSize: [8, 32],
+      fontSize: [8, 64],
+      rotation: 0,
     },
     interactions: [
       {
