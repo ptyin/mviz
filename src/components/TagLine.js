@@ -13,10 +13,19 @@ export default function ({tag2CountByYearMonth, tagCountSorted, style}) {
   const options = tagCountSorted.map(({tag}) => ({label: tag, value: tag}))
   useEffect(() => {
     let temp = []
+
+    function dateStringToMonthRank(dateStr) {
+      let yearStr = dateStr.split('-')[0]
+      let monthStr = dateStr.split('-')[1]
+  
+      return Number(yearStr) * 12 + Number(monthStr)
+    }  
+
     for (let tag of selectedTags)
       temp = temp.concat(
         Object.keys(tag2CountByYearMonth[tag]).map(date => ({tag, date, count: tag2CountByYearMonth[tag][date]}))
       )
+    temp.sort((a, b) => dateStringToMonthRank(a.date) - dateStringToMonthRank(b.date))
     selectTagsCallback(selectedTags)
     setLineData(temp)
 
@@ -66,6 +75,7 @@ export default function ({tag2CountByYearMonth, tagCountSorted, style}) {
     data: lineData,
     height: 250,
     color: lineColor,
+    // color: d3.schemeSet3,
     padding: 'auto',
     xField: 'date',
     yField: 'count',
