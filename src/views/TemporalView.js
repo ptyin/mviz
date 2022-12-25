@@ -155,7 +155,7 @@ export default function ({data}) {
             fontWeight: 'bold',
           }}>Annual listens</h2>
           <div className={'temp1'}>
-            You listened to the most songs on {maxDurationDate}, do you remember the story of this day?
+            You listened the longest time on {maxDurationDate}, do you remember the story of this day?
           </div>
           <div style={{
             padding:"20px",
