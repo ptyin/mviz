@@ -6,12 +6,10 @@ export function setClickedTagCallback(callbackFunc) {
   onClickedTag = callbackFunc
 }
 
-export default function ({data, style}) {
+export default function ({data, initialTag, style}) {
 
-  const [state, setState] = useState('HIP HOP')
-  setClickedTagCallback((tagName) => { console.log("tagview: tag is clicked"); setState(tagName) })
-  
-  console.log("tagpie", data);
+  const [state, setState] = useState(initialTag)
+  setClickedTagCallback((tagName) => { setState(tagName) })
 
   return <TagPie style={style} data={data[state]} tagName={state} />
 }

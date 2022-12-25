@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://ws.audioscrobbler.com/2.0'
+axios.defaults.baseURL = 'https://ws.audioscrobbler.com/2.0'
 axios.defaults.params = {
   api_key: process.env.REACT_APP_API_KEY,
   format: 'json'

@@ -1,9 +1,8 @@
 import TagCloud from '../components/TagCloud'
 import TagExplorer from '../components/TagExplorer'
-import {AutoComplete, Divider, Tag} from 'antd'
+import {Divider, Tag} from 'antd'
 import * as d3 from 'd3-scale-chromatic'
 import TagLine from '../components/TagLine'
-import TagTimeline from '../components/TagTimeline'
 import {scheme} from '../palette'
 import TagPieSelector from '../components/TagPieSelector'
 import TagTimelineSelector from '../components/TagTimelineSelector'
@@ -36,7 +35,9 @@ export default function ({data}) {
           <TagCloud style={{flexBasis: '45%'}} data={data.tag2Count} />
           {/* <TagPie data={data.tag2TrackNameAndCount['HIP HOP']} style={{flexBasis: '45%'}} /> */}
           {/* <TagPie data={data.tag2ArtistNameAndCount[state]} style={{flexBasis: '45%'}} tagName={state} /> */}
-          <TagPieSelector data={data.tag2ArtistNameAndCount} style={{flexBasis: '45%'}} />
+          <TagPieSelector style={{flexBasis: '45%'}}
+                          initialTag={tagCountSorted[0].tag}
+                          data={data.tag2ArtistNameAndCount} />
         </div>
       </div>
       <div style={{
