@@ -4,6 +4,7 @@ export default function ({data}) {
 
   const config = {
     data: [data,data],
+    height: 200,
     xField: 'time',
     yField: ['duration','count'],
     limitInPlot: true,
@@ -34,10 +35,10 @@ export default function ({data}) {
           else {
             str = s+'s';
           }
-          return {name:"听歌时长",value:str};
+          return {name:"Duration",value:str};
         }
         else {
-          return {name:"切歌次数",value:item.count};
+          return {name:"Listens",value:item.count};
         }
       }
     },
@@ -54,9 +55,9 @@ export default function ({data}) {
       itemName: {
         formatter: (text, item) => {
           if (text === 'duration')
-            return '听歌时长';
+            return 'Duration';
           else
-            return '切歌次数';
+            return 'Listens';
         },
       },
     },

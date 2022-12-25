@@ -2,7 +2,6 @@ import Calendar from '../components/Calendar';
 import HourBarchart from "../components/HourBarchart";
 import ClockCalendar from "../components/ClockCalendar";
 import SlidingBarchart from "../components/SlidingBarchart";
-import TimePie from "../components/TimePie";
 function getNewData(data){
   let annualData = [];
   for(let record of data) {
@@ -50,7 +49,7 @@ function getNewData(data){
       maxHour = hour;
   }
 
-  let week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+  let week = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
   let clockData = [];
   for(let wk=0; wk<7; wk++)
     for(let clk=0; clk<24; clk++) {
@@ -90,34 +89,61 @@ export default function ({data}) {
 
   return (
     <div style={{
+      height: '92vh',
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'row',
+      justifyContent: 'space-evenly'
     }}>
       <div style={{
+        flexBasis: '50%',
+        margin: '16px 0',
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
+        backgroundColor:"white",
+        boxShadow:"0 2px 8px rgb(0 0 0 / 9%)",
+        justifyContent: 'space-evenly'
       }}>
         <div style={{
-          flexBasis: "50%",
+          display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
-          // backgroundColor:"white",
-          // boxShadow:"0 2px 8px rgb(0 0 0 / 9%)",
+          flexBasis: "55%",
           margin: "13px",
         }}>
           <h2 style={{
+            flexBasis: '10%',
             paddingTop: '10px',
             fontWeight: 'bold',
           }}>Calendar heat map</h2>
-          <div className={'temp1'}>记录一年的幸运与美好~</div>
-          <div style={{
-            // backgroundColor:"#C6C6C6",
-            padding:"20px",
-          }}>
-            <Calendar style={{height:'25vh'}} data={data}/>
-          </div>
+          <div style={{flexBasis: '10%'}} className={'temp1'}>Record a year of luck and goodness ;)</div>
+          <Calendar style={{flexBasis: '80%'}} data={data}/>
         </div>
         <div style={{
-          flexBasis: "50%",
+          flexBasis: '40%',
+          display: 'flex',
+          margin: "13px",
+          alignItems: 'center',
+          justifyContent: 'space-evenly'
+        }}>
+          <div>
+            <h2 style={{
+              textAlign: 'center', lineHeight: '64px', fontWeight: 'bold',
+            }}>Weekly listens</h2>
+            <div className={'temp1'}>{clockData[maxPos].week} {clockData[maxPos].time+":00"}, see you then!</div>
+          </div>
+          <ClockCalendar style={{height: '100%'}} data={clockData}/>
+        </div>
+      </div>
+      <div style={{
+        flexBasis: '45%',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: 'space-evenly'
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          flexBasis: "30%",
           justifyContent: 'center',
           // backgroundColor:"white",
           // boxShadow:"0 2px 8px rgb(0 0 0 / 9%)",
@@ -127,45 +153,30 @@ export default function ({data}) {
             // backgroundColor: "#F2F2F2",
             paddingTop: '10px',
             fontWeight: 'bold',
-          }}>Annual listening time distribution</h2>
-          <div className={'temp1'}>你在 {maxDurationDate} 听歌最多，这天的故事你还记得吗？</div>
+          }}>Annual listens</h2>
+          <div className={'temp1'}>
+            You listened to the most songs on {maxDurationDate}, do you remember the story of this day?
+          </div>
           <div style={{
             padding:"20px",
           }}>
-          <SlidingBarchart style={{height:'25vh'}} data={annualData}/>
+            <SlidingBarchart data={annualData}/>
           </div>
         </div>
-      </div>
-      <div style={{
-        display: "flex",
-        flexDirection: "row",
-      }}>
         <div style={{
-          flexBasis: '50%',
+          flexBasis: '30%',
           margin: "13px",
         }}>
           <h2 style={{
             paddingTop: '10px',
             fontWeight: 'bold',
-          }}>Daily listening time distribution</h2>
-          <div className={'temp1'}>你喜欢在每天{maxHour+":00"}听歌，这是你最清闲的时刻，还是最有干劲的时候呢？</div>
-          <HourBarchart style={{height:'25vh'}} data={dailyData}/>
+          }}>Daily listens</h2>
+          <div className={'temp1'}>
+            You like to listen to music at {maxHour+":00"} every day.
+            Is this your most leisure time, or the most energetic time?
+          </div>
+          <HourBarchart data={dailyData}/>
         </div>
-        <div style={{
-          flexBasis: '50%',
-          margin: "13px",
-        }}>
-          <h2 style={{
-            paddingTop: '10px',
-            fontWeight: 'bold',
-          }}>Weekly listening time distribution</h2>
-          <div className={'temp1'}>{clockData[maxPos].week}{clockData[maxPos].time+":00"}，准时与你相遇！</div>
-            <ClockCalendar style={{height:'25vh'}} data={clockData}/>
-        </div>
-
-        {/*<div>*/}
-        {/*  <TimePie data={data} />*/}
-        {/*</div>*/}
       </div>
     </div>
   )
