@@ -2,6 +2,7 @@
   "name": "mviz",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@ant-design/charts": "^1.4.2",
     "@ant-design/plots": "^1.2.2",
