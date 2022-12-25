@@ -65,7 +65,7 @@ export default function ({data,style}) {
       title: 'date',
       showMarkers: false,
       customItems: (originalItems) => {
-        let newItem = {name:'切歌次数',value:originalItems[0].data.count};
+        let newItem = {name:'Count',value:originalItems[0].data.count};
         originalItems.push(newItem);
         return originalItems;
       },
@@ -92,7 +92,7 @@ export default function ({data,style}) {
         else {
           str = s+'s';
         }
-        return {name:"听歌时长",value:str}
+        return {name:"Duration",value:str}
       }
     },
     interactions: [

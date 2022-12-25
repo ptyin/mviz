@@ -1,6 +1,6 @@
 import {Heatmap} from "@ant-design/plots";
 
-export default function ({data}) {
+export default function ({data, style}) {
 
   const config = {
     data,
@@ -65,12 +65,12 @@ export default function ({data}) {
         }
 
         return {
-          title:item.time+":00~"+(item.time+1)+":00("+item.week+")",
-          name:"累计听歌时长",
+          title:item.time+":00~"+(item.time+1)+":00 ("+item.week+")",
+          name:"Accumulated duration",
           value:str};
       }
     },
     // interactions: [{type: 'element-active'}],
   };
-  return <Heatmap {...config} />
+  return <Heatmap style={style} {...config} />
 }
