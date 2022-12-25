@@ -131,12 +131,12 @@ export default function statistics(history) {
     let others_value = 0
     
     for (let nameAndCount of array) {
-      current_value += nameAndCount.value
       if (current_value <= total_value * presum_ratio || nameAndCount.value >= total_value * single_ratio) {
         new_array.push(nameAndCount)
       } else {
         others_value += nameAndCount.value
       }
+      current_value += nameAndCount.value
     }
 
     if (others_value > 0) {
