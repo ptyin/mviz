@@ -7,7 +7,7 @@ export default function ({data, style}) {
     xField: 'time',
     yField: 'week',
     colorField: 'value',
-    color: ['#FFFFFF','#F08080'],
+    color: ['#FAFAFA','#F08080'],
     coordinate: {
       type: 'polar',
       cfg: {
