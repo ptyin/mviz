@@ -9,7 +9,7 @@ export default function ({data}) {
     yField: ['duration','count'],
     limitInPlot: true,
     padding: 'auto',
-    slider: {},
+    // slider: {},
     tooltip:{
       formatter: (item) => {
         if(item.duration) {

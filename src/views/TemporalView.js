@@ -38,8 +38,8 @@ function getNewData(data){
   for(let record of data) {
     let time = record.endTime.split(' ')[1];
     let hour = parseInt(time.split(':')[0]);
-    hour -= 8;
-    if(hour<0) hour+=24;
+    // hour -= 8;
+    // if(hour<0) hour+=24;
     dailyData[hour].duration += record.msPlayed;
     dailyData[hour].count += 1;
   }
@@ -64,8 +64,8 @@ function getNewData(data){
     let time = record.endTime.split(' ')[1];
     let wk = new Date(date).getDay();
     let clk = parseInt(time.split(':')[0]);
-    clk -= 8;
-    if(clk<0) clk+=24;
+    // clk -= 8;
+    // if(clk<0) clk+=24;
     clockData[wk*24+clk].value += record.msPlayed;
   }
   let maxPos = 0;
@@ -115,7 +115,7 @@ export default function ({data}) {
             paddingTop: '10px',
             fontWeight: 'bold',
           }}>Calendar heat map</h2>
-          <div style={{flexBasis: '10%'}} className={'temp1'}>Record a year of luck and goodness ;)</div>
+          <div style={{flexBasis: '10%'}} className={'temp1'}>Record a year of luck and goodness :)</div>
           <Calendar style={{flexBasis: '80%'}} data={data}/>
         </div>
         <div style={{

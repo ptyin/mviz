@@ -8,19 +8,21 @@ export default function ({data,style}) {
   let startTamp = new Date(firstDay).getTime();
   let endTamp = new Date(lastDay).getTime();
 
-  let week=0;
+  let week=0, Sun=new Date(firstDay).getMonth()+'-'+new Date(firstDay).getDate();
   for (let tamp=startTamp; tamp<=endTamp; tamp+=1000*60*60*24) {
     let today = new Date(tamp);
-    if(today.getDay()==0)
-      week ++;
     let year = today.getFullYear();
     let month = String(today.getMonth()+1).padStart(2,'0');
     let date = String(today.getDate()).padStart(2,'0');
     let str = year+"-"+month+"-"+date;
+    if(today.getDay()==0) {
+      week ++;
+      Sun = today.getMonth()+'-'+today.getDate();
+    }
     date2Count[str]= {
       date: str,
       day: today.getDay(),
-      week: week,
+      week: week+"-"+Sun,
       duration: 0,
       count: 0
     }
@@ -43,7 +45,7 @@ export default function ({data,style}) {
     xField: 'week',
     yField: 'day',
     colorField: 'duration',
-    color: ['#FFFFFF','#F08080'], //FAFAFA
+    color: ['#FAFAFA','#F08080'], //FAFAFA
     shape: 'boundary-polygon',
     reflect: 'y',
     meta: {
@@ -105,19 +107,13 @@ export default function ({data,style}) {
     },
     xAxis: {
       label:{
-        formatter: (val)=>{
-          if(val == 2) return 'Feb';
-          else if(val == 5) return 'Mar';
-          else if(val == 9) return 'Apr';
-          else if(val == 14) return 'May';
-          else if(val == 18) return 'Jun';
-          else if(val == 24) return 'Jul';
-          else if(val == 26) return 'Aug';
-          else if(val == 30) return 'Sep';
-          else if(val == 36) return 'Oct';
-          else if(val == 39) return 'Nov';
-          else if(val == 45) return 'Dec';
-          else if(val == 48) return 'Jan';
+        autoHide:false,
+        formatter: (val) => {
+          let Month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          let month = val.split('-')[1];
+          let date = val.split('-')[2];
+          if(date>8&&date<=15)
+            return Month[month];
           return '';
         }
       }
