@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+<div style="width:100%;">
+    <img align="right" src="demo/logo.svg" style="height:128px;margin-left: 40px" />
+    <div id="introduction" style="margin-right: 0px">
+    	<h1 align="center">mviz🎵</h1>
+        <p>
+	    A visualization tool for your listening history.
+        </p>
+    </div>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## [Online Demo](https://PTYin.github.io/mviz)
 
-## Available Scripts
+![](demo/views.png)
 
-In the project directory, you can run:
+## Usage
 
-### `npm start`
+1. Request a copy of your Spotify listening history by emailing [privacy@spotify.com](mailto://privacy@spotify.com).
+   The history file (i.e., `StreamingHistory*.json`) should be something like:
+   ```json
+    [
+      {
+        "endTime" : "2019-02-13 06:25",
+        "artistName" : "Ludwig van Beethoven",
+        "trackName" : "Piano Sonata No. 17 In D Minor, Op. 31, No. 2 -\"The Tempest\": 3. Allegretto - Live",
+        "msPlayed" : 5827
+      },
+      {
+        "endTime" : "2019-02-13 06:26",
+        "artistName" : "Ludwig van Beethoven",
+        "trackName" : "Piano Sonata No. 17 In D Minor, Op. 31, No. 2 -\"The Tempest\": 3. Allegretto - Live",
+        "msPlayed" : 2069
+      }
+    ]
+    ```
+2. Press the top right button "Analyze your own", and select your own history file. ![](demo/selector.png)
+3. Wait to all necessary information (e.g., info about related tracks, artists and albums) fetched from [Last.Fm](https://www.last.fm) public API. ![](demo/loading.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## For Developer
 
-### `npm test`
+### Last.Fm API Key
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Create a Last.Fm API account [link](https://www.last.fm/api/account/create)
+2. Copy the API Key to `.env` file
+   ```text
+   REACT_APP_API_KEY=[your-last.fm-api-key]
+   ```
 
-### `npm run build`
+### Start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```shell
+npm install && npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
