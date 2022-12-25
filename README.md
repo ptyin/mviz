@@ -33,15 +33,15 @@
     ]
     ```
 2. Press the top right button "Analyze your own", and select your own history file. ![](demo/selector.png)
-3. Wait to all necessary information (e.g., info about related tracks, artists and albums) fetched from [Last.Fm](https://www.last.fm) public API. ![](demo/loading.png)
+3. Wait to all necessary information (e.g., info about related tracks, etc.) fetched from [Last.Fm](https://www.last.fm) API. ![](demo/loading.png)
 
 
 ## For Developer
 
 ### Last.Fm API Key
 
-1. Create a Last.Fm API account [link](https://www.last.fm/api/account/create)
-2. Copy the API Key to `.env` file
+1. Create a Last.Fm API account [[link]](https://www.last.fm/api/account/create).
+2. Copy the API Key to `.env` file.
    ```text
    REACT_APP_API_KEY=[your-last.fm-api-key]
    ```
