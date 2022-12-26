@@ -59,7 +59,7 @@ async function fetchInfo (json) {
         trackInfo.artist = artistInfo
       }
 
-      if (trackInfo.album) {
+      if (trackInfo.album && trackInfo.album.title !== undefined) {
         const albumStr = `${trackInfo.album.artist}\t${trackInfo.album.title}`
         const albumInfo = albumMap.get(albumStr) ||
           ((({name, image, listeners, playcount}) =>
