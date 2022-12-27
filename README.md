@@ -1,7 +1,7 @@
 <div style="width:100%;">
     <img align="right" src="demo/logo.svg" style="height:128px;margin-left: 40px" />
     <div id="introduction" style="margin-right: 0px">
-    	<h1>mviz🎵 - A visualization tool for your listening history.</h1>
+    	<h1>mviz🎵</h1>
     </div>
 </div>
 
