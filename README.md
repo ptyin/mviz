@@ -1,12 +1,13 @@
 <div style="width:100%;">
     <img align="right" src="demo/logo.svg" style="height:128px;margin-left: 40px" />
     <div id="introduction" style="margin-right: 0px">
-    	<h1 align="center">mviz🎵</h1>
-        <p>
-	    A visualization tool for your listening history.
-        </p>
+    	<h1>mviz🎵 - A visualization tool for your listening history.</h1>
     </div>
 </div>
+
+- **mviz** tells more than your favourite tracks, artists & albums 💓,
+- but also helps you analyze your listening time habits 📅,
+- and demonstrates tags interactively and intuitively 🏷️.
 
 ## [Online Demo](https://PTYin.github.io/mviz)
 
